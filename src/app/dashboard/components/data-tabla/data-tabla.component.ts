@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, AfterViewInit, inject } from '@angular/core';
+import {Component, Input, OnInit, AfterViewInit, inject, OnChanges, SimpleChanges} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlowbiteService } from '../../../services/flowbite.service';
 import {FormsModule} from '@angular/forms';
@@ -16,8 +16,8 @@ export interface Column {
   templateUrl: './data-tabla.component.html',
   styleUrls: ['./data-tabla.component.css']
 })
-export class DataTableComponent implements OnInit, AfterViewInit {
-  private flowbiteService = inject(FlowbiteService);
+export class DataTableComponent implements OnInit, AfterViewInit, OnChanges {
+  // private flowbiteService = inject(FlowbiteService); // Retiré ou commenté
 
   @Input() data: any[] = [];
   @Input() columns: Column[] = [];
@@ -30,20 +30,34 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   sortColumn: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
 
+  // Utilisez ngOnChanges pour détecter les changements d'input
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'] && changes['data'].currentValue !== changes['data'].previousValue) {
+      this.calculatePagination();
+    }
+  }
+
   ngOnInit(): void {
-    this.calculatePagination();
+    // L'initialisation est maintenant gérée par ngOnChanges lorsque les données arrivent
+    // Si data est déjà là au démarrage (peu probable), cela fonctionnera quand même.
   }
 
   ngAfterViewInit(): void {
+    // Si vous utilisez encore FlowbiteService pour initialiser, gardez ceci, sinon retirez-le
+    /*
     this.flowbiteService.loadFlowbite(() => {
       console.log('Flowbite loaded for DataTable');
     });
+    */
   }
 
   calculatePagination(): void {
     this.totalPages = Math.ceil(this.data.length / this.itemsPerPage);
     this.updatePaginatedData();
   }
+
+  // ... (Le reste des méthodes goToPage, nextPage, previousPage, sortBy, getPageNumbers, getStatusBadgeClass, getStatusLabel, viewItem, editItem, deleteItem, Math...) ...
+  // ... (Le reste du code ci-dessous est identique au vôtre, il est fonctionnel) ...
 
   updatePaginatedData(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;

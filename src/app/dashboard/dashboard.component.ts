@@ -43,6 +43,7 @@ interface Stats {
     BarChartComponent,
     PieChartComponent,
     DataTableComponent,
+    DataTableComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']

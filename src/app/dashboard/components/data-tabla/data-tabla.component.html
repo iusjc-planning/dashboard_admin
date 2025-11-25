@@ -14,11 +14,11 @@
 
   <!-- Table -->
   <div class="overflow-x-auto">
-    <table class="w-full text-sm text-left">
+    <table class="w-full text-sm text-left table-fixed">
       <thead class="text-xs text-gray-700 uppercase bg-gradient-to-r from-gray-50 to-gray-100">
       <tr>
         @for (column of columns; track column.key) {
-          <th class="px-6 py-4 font-semibold">
+          <th class="px-50 py-4 font-semibold ">
             @if (column.sortable) {
               <button
                 (click)="sortBy(column.key)"
@@ -37,14 +37,14 @@
           </th>
         }
         @if (showActions) {
-          <th class="px-6 py-4 font-semibold">Actions</th>
+          <th class="px-50 py-6 font-semibold ">Actions</th>
         }
       </tr>
       </thead>
       <tbody>
         @if (paginatedData.length === 0) {
           <tr>
-            <td [attr.colspan]="columns.length + (showActions ? 1 : 0)" class="px-6 py-12 text-center">
+            <td [attr.colspan]="columns.length + (showActions ? 1 : 0)" class="px-1 py-4 text-center">
               <div class="flex flex-col items-center justify-center">
                 <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
@@ -57,7 +57,7 @@
         @for (item of paginatedData; track item.id) {
           <tr class="bg-white border-b hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 cursor-pointer">
             @for (column of columns; track column.key) {
-              <td class="px-6 py-4" [class.font-medium]="column.key === columns[0].key" [class.text-gray-900]="column.key === columns[0].key">
+              <td class="px-6 py-4 " [class.font-medium]="column.key === columns[0].key" [class.text-gray-900]="column.key === columns[0].key">
                 @if (column.key === 'status') {
                   <span [ngClass]="getStatusBadgeClass(item[column.key])"
                         class="px-3 py-1 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm border">
@@ -153,20 +153,7 @@
           </svg>
         </button>
       </nav>
-
-      <!-- Items per page -->
-      <div class="flex items-center gap-2">
-        <label class="text-sm text-gray-600">Éléments par page:</label>
-        <select
-          [(ngModel)]="itemsPerPage"
-          (change)="calculatePagination()"
-          class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
-          <option [value]="5">5</option>
-          <option [value]="10">10</option>
-          <option [value]="20">20</option>
-          <option [value]="50">50</option>
-        </select>
-      </div>
     </div>
   </div>
 </div>
+
