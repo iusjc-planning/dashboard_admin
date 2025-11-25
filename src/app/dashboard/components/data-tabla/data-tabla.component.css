@@ -1,0 +1,25 @@
+/* Animations pour le tri */
+button svg {
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Hover effect sur les lignes */
+tbody tr {
+  position: relative;
+}
+
+tbody tr::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+  transform: scaleY(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+tbody tr:hover::before {
+  transform: scaleY(1);
+}

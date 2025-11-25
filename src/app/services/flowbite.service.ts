@@ -1,0 +1,15 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FlowbiteService {
+
+  loadFlowbite(callback: (flowbite: any) => void) {
+    if (typeof window !== 'undefined') {
+      import('flowbite').then(flowbite => {
+        callback(flowbite);
+      });
+    }
+  }
+}

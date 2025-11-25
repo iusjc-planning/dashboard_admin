@@ -1,0 +1,47 @@
+<div class="bg-white rounded-lg shadow">
+  <div class="p-6 border-b border-gray-200">
+    <h2 class="text-lg font-semibold text-gray-900">Réservations</h2>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm text-left">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <tr>
+        <th class="px-6 py-3">Salle</th>
+        <th class="px-6 py-3">Utilisateur</th>
+        <th class="px-6 py-3">Date</th>
+        <th class="px-6 py-3">Horaire</th>
+        <th class="px-6 py-3">Statut</th>
+        @if (showActions) {
+          <th class="px-6 py-3">Actions</th>
+        }
+      </tr>
+      </thead>
+      <tbody>
+        @for (booking of bookings; track booking.id) {
+          <tr class="bg-white border-b hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-gray-900">{{ booking.room }}</td>
+            <td class="px-6 py-4">{{ booking.user }}</td>
+            <td class="px-6 py-4">{{ booking.date }}</td>
+            <td class="px-6 py-4">{{ booking.time }}</td>
+            <td class="px-6 py-4">
+              <span [ngClass]="getStatusBadgeClass(booking.status)"
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
+                {{ getStatusLabel(booking.status) }}
+              </span>
+            </td>
+            @if (showActions) {
+              <td class="px-6 py-4">
+                <button (click)="viewBooking(booking.id)" class="text-blue-600 hover:text-blue-800 mr-3">
+                  Voir
+                </button>
+                <button (click)="cancelBooking(booking.id)" class="text-red-600 hover:text-red-800">
+                  Annuler
+                </button>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="bg-white rounded-lg shadow p-6">
+  <div class="flex justify-between items-start mb-4">
+    <h3 class="text-lg font-semibold text-gray-900">{{ room.name }}</h3>
+    <span [ngClass]="getStatusBadgeClass()"
+          class="px-2.5 py-0.5 rounded-full text-xs font-medium">
+      {{ getStatusLabel() }}
+    </span>
+  </div>
+  <div class="space-y-2 mb-4">
+    <p class="text-sm text-gray-600">
+      <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+      Capacité: {{ room.capacity }} personnes
+    </p>
+    <p class="text-sm text-gray-600">
+      Équipement: {{ room.equipment }}
+    </p>
+  </div>
+  <div class="flex gap-2">
+    <button (click)="editRoom()"
+            class="flex-1 px-3 py-2 text-sm bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition-colors">
+      Modifier
+    </button>
+    <button (click)="viewDetails()"
+            class="flex-1 px-3 py-2 text-sm bg-gray-50 text-gray-600 rounded hover:bg-gray-100 transition-colors">
+      Voir détails
+    </button>
+  </div>
+</div>
