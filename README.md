@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dashboard
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
@@ -57,3 +58,8 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=======
+# dashboard_admin
+tableau de board de l'administrateur
+cherchez a installer tailwind puis flowbite et datatable dans flowbite sans ca vous n'allez pas pouvoir visualiser
+>>>>>>> 65e57f022e8213d730415bbae6549a3418cb1cee
